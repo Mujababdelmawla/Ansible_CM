@@ -1,0 +1,17 @@
+---
+- name: configure nginx 
+  hosts: web 
+  become: yes 
+
+  tasks:
+    - name: installing nginx 
+      apt:
+         name: nginx 
+         state: present 
+
+
+    - name: starting nginx 
+      service:
+        name: nginx 
+        state: started 
+        enabled: yes 
