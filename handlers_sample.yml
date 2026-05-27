@@ -1,0 +1,16 @@
+- name: manage nginx with handlers 
+  hosts: web servers 
+  become: yes
+
+  tasks:
+     - name: deploy nginx configuration
+       templete:
+         src: /home/mujab/nginx-config.js
+         dest: /etc/nginx/nginx.config 
+         notify: Restart nginx
+
+       handlers:
+          - name: Restart nginx 
+            service:
+               name: nginx
+               state: restarted 

@@ -1,0 +1,33 @@
+- name: server with vars, fact, and loops 
+  hosts: all
+  become: yes 
+  gather_facts: true 
+
+
+  vars:
+    tools:
+      - curl 
+      - git 
+      - htop 
+
+    web_package: nginx 
+
+  tasks:
+     - name: display system architecture
+       debug:
+         msg: "system architecture is {{ansible_facts}} ['architecture']"
+        
+     - name: install web server 
+       apt:
+         name: "{{web_package}}"
+         state: present
+         update_cache: true 
+         when: ansible_facts ['os_family'] ==  "ubuntu"
+
+     - name: install some tools
+       apt:
+        name: "{{items}}"
+        state: present
+
+        loop: "{{tools}}"
+        

@@ -1,0 +1,26 @@
+# file name should be (aws_ec2.yml)
+
+plugin: amazon.aws.aws_ec2
+regions:
+   - us-east-1
+
+filters:
+   tag:Role:web
+   instance_state_name: running
+
+compose:
+    ansible_host: public_ip_address
+
+
+
+# dynamic inventory is using the concept of plugins which is interacting with the provider API's 
+
+# it prevents the manual fixes in static inventory 
+
+# in this dynamic inventory sample everytime a server crashes in the cloud new one will come up
+# and according to the sepcefication the dynamic inventory will pick it from the cloud provider
+# through plugins 
+
+# - static inventory is like having a prented guest list everything written manually 
+# - dynamic inventory is like having a live google sheet list will automatically adds new names 
+# and it always staying updated 
