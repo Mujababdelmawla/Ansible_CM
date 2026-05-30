@@ -72,7 +72,7 @@ ansible_ssh_private_key_file="./ansible-key-01.pem"
 - `become: yes` — runs all tasks as sudo (root privileges)
 - `state: present` — installs nginx only if not already installed (idempotent)
 - `state: started` — ensures nginx is running
-- `enabled: yes` — ensures nginx starts automatically on reboot ...
+- `enabled: yes` — ensures nginx starts automatically on reboot ...done 
 
 ---
 
